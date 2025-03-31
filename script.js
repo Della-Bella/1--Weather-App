@@ -1,0 +1,2 @@
+alert: "hello!"
+conslelog.alert
