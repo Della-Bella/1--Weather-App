@@ -5,15 +5,15 @@ const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q="
 //lookig for input fild city name//
 
 const searchBox= document.querySelector (".search input");
-const searchBtn= document.querySelector (".search btn");
+const searchBtn= document.querySelector (".search button");
 const wheatherIcon= document.querySelector(".wheather-icon");
 
 async function checkWeather(city){
-    const response= await fetch (apiUrl + city+ `&appid=${apiKey}`);
+    const response= await fetch(apiUrl + city + `&appid=${apiKey}`);
 //if city name is invalid display error//
 
     if(response.status == 400){
-        document.querySelector(".error"). style.display= "blcok";
+        document.querySelector(".error"). style.display= "block";
         document.querySelector(".weather"). style.display= "none";
     }else 
     var data = await response.json();
@@ -41,13 +41,13 @@ else if(data.wheather[0].main == "Mist"){
     document.querySelector(".city").innerHTML = data.name;
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
     document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-    document.querySelector(".wind").innerHTML = data.main.wind.spedd= " km/h";
+    document.querySelector(".wind").innerHTML = data.main.wind.speed= " km/h";
 
     }
     
 //update the city input//
-searchBtn.addEventListener("click" , ()=>{
-    checkwheather(searchBox.value)
+searchBtn.addEventListener("click", ()=>{
+    checkWeather(searchBox.value);
 })
 checkWeather();
 
