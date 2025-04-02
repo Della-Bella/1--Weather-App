@@ -1,55 +1,50 @@
-
 const apiKey = "2c231e2e9f1d3aa695062a0516d8f7b0";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-//lookig for input fild city name//
+// looking for input field and button
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
 
-const searchBox= document.querySelector (".search input");
-const searchBtn= document.querySelector (".search button");
-const wheatherIcon= document.querySelector(".wheather-icon");
+async function checkWeather(city) {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-async function checkWeather(city){
-    const response= await fetch(apiUrl + city + `&appid=${apiKey}`);
-//if city name is invalid display error//
+    // If city name is invalid, display error
+    if (response.status == 404) {
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+    } else {
+        const data = await response.json();
 
-    if(response.status == 400){
-        document.querySelector(".error"). style.display= "block";
-        document.querySelector(".weather"). style.display= "none";
-    }else 
-    var data = await response.json();
-    //update the image//
+        // Hide error message and show weather info
+        document.querySelector(".error").style.display = "none";
+        document.querySelector(".weather").style.display = "block";
 
-if (data.wheather[0].main == "Clouds"){
-    wheatherIcon= "img/cloud.png";
-}
-else if(data.wheather[0].main == "Clear"){
-    wheatherIcon= "img/sunny.png";
-}
-else if(data.wheather[0].main == "Rain"){
-    wheatherIcon= "img/rain.png";
-}
-else if(data.wheather[0].main == "Drizzle"){
-    wheatherIcon= "img/drizze.png";
-}
-else if(data.wheather[0].main == "Mist"){
-    wheatherIcon= "img/snow.png";
-}
+        // Update the weather icon based on condition
+        if (data.weather[0].main == "Clouds") {
+            weatherIcon.src = "img/cloud.png";
+        } else if (data.weather[0].main == "Clear") {
+            weatherIcon.src = "img/sunny.png";
+        } else if (data.weather[0].main == "Rain") {
+            weatherIcon.src = "img/rain.png";
+        } else if (data.weather[0].main == "Drizzle") {
+            weatherIcon.src = "img/drizzle.png";
+        } else if (data.weather[0].main == "Mist") {
+            weatherIcon.src = "img/snow.png";
+        }
 
-    //console.log(data);
-    // get the h1, h2 and p elemento to append the data//
-
-    document.querySelector(".city").innerHTML = data.name;
-    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-    document.querySelector(".wind").innerHTML = data.main.wind.speed= " km/h";
-
+        // Update the city, temperature, humidity, and wind speed
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
     }
-    
-//update the city input//
-searchBtn.addEventListener("click", ()=>{
+}
+
+// Update the city input on button click
+searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value);
-})
-checkWeather();
+});
 
-
-
+// Optional: You can set a default city when the page loads, e.g., "New York"
+checkWeather("");
