@@ -69,13 +69,13 @@ body {
 .weather h1.temp {
     font-size: 80px; 
     font-weight: 500;
-    margin-top: -10px;
+    margin-top: 20px; /* Slightly adjusted for better spacing */
 }
 
 .weather h2.city {
     font-size: 45px;
     font-weight: 400;
-    margin-top: -5px; 
+    margin-top: 10px; /* Slightly adjusted for better spacing */
 }
 
 .details {
@@ -97,9 +97,10 @@ body {
     margin-right: 10px;
 }
 
-.humidity .wind { 
+
+.wind {
     font-size: 28px;
-    margin-top: -6px; 
+    margin-top: -6px;
 }
 
 
@@ -107,12 +108,9 @@ body {
     font-size: 14px; 
     margin-top: -4px;
 }
-.error{
+.error {
     text-align: left;
-    margin-left:10px ;
-    font-size: 10px;
-    margin-top: 14px;
-    margin-bottom: 14px;
-    display: none;
-  
+     margin-left: 10px;
+      margin-top: 10px;
+       display: none;
 }
