@@ -3,6 +3,8 @@
 
 This project is a basic web app that lets you search for a city and see its current weather conditions. It was built to practice fetching data from an online service (an API) and displaying it on a webpage.
 
+** Live Demo:** https://weatherapp-dellabella.netlify.app/
+
 ## How It Works (The Basics):
 
 1.  **API Setup:**
